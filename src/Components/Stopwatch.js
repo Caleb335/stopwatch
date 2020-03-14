@@ -21,11 +21,11 @@ export default class Stopwatch extends React.Component {
             currentTime: this.state.currentTime,
             timerStart: Date.now() - this.state.currentTime
         })
-        this.timer = setInterval(
+        this.timer = setInterval(() =>
             this.setState({
                 currentTime: Date.now() - this.state.timerStart
             }),
-        10)
+        1000)
     }
     stopTimer() {
         console.log("Yeah you have to stop now")
@@ -45,7 +45,6 @@ export default class Stopwatch extends React.Component {
         // Formatting timer display.
         const {currentTime} = this.state
 
-        let centiSeconds = ("0" + (Math.floor(currentTime / 10) % 100)).slice(-2)
         let seconds = ("0" + (Math.floor(currentTime / 1000) % 60)).slice(-2)
         let minutes = ("0" + (Math.floor(currentTime / 6000) % 60)).slice(-2)
         let hours = ("0" + Math.floor(currentTime / 3600000)).slice(-2)
@@ -53,22 +52,21 @@ export default class Stopwatch extends React.Component {
         return(
             <div className="timer">
                 <div className="stopwatch-block">
-                    <h1>Beat the time</h1>
-                    {hours} : {minutes} : {seconds} : {centiSeconds}
+                    <p className="md-text intro">Beat the time</p>
+                    <p className="lg-text mt-4">
+                        {hours} : {minutes} : {seconds}
+                    </p> 
                 </div>
-                <div className="buttons">
-                    {this.state.hasTimerStarted === false && this.state.currentTime === 0 && (
-                        <button onclick={this.startTimer}>Start</button>
-                    )}
-                    {this.state.hasTimerStarted === true && (
-                        <button onClick={this.stopTimer}>Stop</button>
-                    )}
-                    {this.state.hasTimerStarted === false && this.state.currentTime > 0 && (
-                        <button onClick={this.startTimer}>Resume</button>
-                    )}
-                    {this.state.hasTimerStarted === false && this.state.currentTime > 0 && (
-                        <button onClick={this.resetTimer}>Reset</button>
-                    )}
+                <div className="buttons mt">
+                    <button onClick={this.stopTimer}>
+                        <i className="fas fa-stop"></i>
+                    </button>
+                    <button onClick={this.startTimer}>
+                        <i className="fas fa-play"></i>
+                    </button>
+                    <button onClick={this.resetTimer}>
+                        <i className="fas fa-re-play"></i>
+                    </button>
                 </div>
             </div>
         )
