@@ -1,4 +1,5 @@
 ## React-stopwatch
+A simple stopwatch app with ReactJs
 
 
 ## Setting Up
@@ -10,7 +11,7 @@
 ```npm 
     npm start 
 ``` 
-to view the project o your liveserver
+to view the project on your liveserver
 
 ## Contributing
 - Just shoot a PR at me, I'm cool with it. 😄
