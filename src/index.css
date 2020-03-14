@@ -54,7 +54,7 @@ footer {
 
 @media screen and (max-width: 576px) {
     .lg-text {
-        font-size: 40px;
+        font-size: 55px;
     }
     .mt-4 {
         margin-top: 30%;
@@ -63,13 +63,13 @@ footer {
         font-size: 28px;
     }
     .buttons {
-        margin-left: 20%;
+        margin-left: 26%;
         margin-top: 7%;
     }
     button {
-        height: 27px;
-        width: 27px;
-        border-radius: 27px;
+        height: 32px;
+        width: 32px;
+        border-radius: 32px;
         font-size: 14px;
         border: 1px solid;
     }
