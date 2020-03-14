@@ -65,7 +65,7 @@ export default class Stopwatch extends React.Component {
                         <i className="fas fa-play"></i>
                     </button>
                     <button onClick={this.resetTimer}>
-                        <i className="fas fa-re-play"></i>
+                        <i className="fa fa-refresh"></i>
                     </button>
                 </div>
             </div>

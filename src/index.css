@@ -2,9 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Baloo Chettan 2', cursive;
 }
 #root {
     background: #192a56;
+    min-height: 70vh;
 }
 .stopwatch-block {
     margin-top: 2%;
@@ -51,10 +53,33 @@ footer {
 }
 
 @media screen and (max-width: 576px) {
+    .lg-text {
+        font-size: 40px;
+    }
+    .mt-4 {
+        margin-top: 30%;
+    }
+    .intro {
+        font-size: 28px;
+    }
+    .buttons {
+        margin-left: 20%;
+        margin-top: 7%;
+    }
     button {
-        height: 40px;
-        width: 40px;
-        border-radius: 20px;
+        height: 27px;
+        width: 27px;
+        border-radius: 27px;
+        font-size: 14px;
+        border: 1px solid;
+    }
+    .mt-1 {
+        margin-top: 53%;
+    }
+    footer {
+        margin-left: 28%;
+    }
+    footer p, a {
         font-size: 14px;
     }
 }
