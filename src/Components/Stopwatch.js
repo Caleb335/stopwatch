@@ -45,9 +45,13 @@ export default class Stopwatch extends React.Component {
         // Formatting timer display.
         const {currentTime} = this.state
 
-        let seconds = ("0" + (Math.floor(currentTime / 1000) % 60)).slice(-2)
-        let minutes = ("0" + (Math.floor(currentTime / 6000) % 60)).slice(-2)
-        let hours = ("0" + Math.floor(currentTime / 3600000)).slice(-2)
+        let seconds = 1000
+        let minutes = seconds * 60
+        let hours = minutes * 60
+
+        seconds = ("0" + Math.floor(currentTime % (minutes) / seconds)).slice(-2)
+        minutes = ("0" + Math.floor((currentTime % (hours)) / (minutes))).slice(-2)
+        hours = ("0" + Math.floor(currentTime / hours)).slice(-2)
 
         return(
             <div className="timer">
