@@ -1,5 +1,5 @@
 import React from 'react'
-// import Buttons from './Buttons'
+import Buttons from './Buttons';
 
 export default class Stopwatch extends React.Component {
     //setting the state of stopwatch component
@@ -14,6 +14,7 @@ export default class Stopwatch extends React.Component {
         this.stopTimer = this.stopTimer.bind(this)
         this.resetTimer = this.resetTimer.bind(this)
     }
+
     startTimer() {
         console.log("Are you working?")
         this.setState({
@@ -27,6 +28,8 @@ export default class Stopwatch extends React.Component {
             }),
         1000)
     }
+
+    // function to stop the timer
     stopTimer() {
         console.log("Yeah you have to stop now")
         this.setState({
@@ -34,6 +37,8 @@ export default class Stopwatch extends React.Component {
         })
         clearInterval(this.timer);
     }
+
+    // function to  reset the timer
     resetTimer() {
         this.setState({
             timerStart: 0,
@@ -62,15 +67,18 @@ export default class Stopwatch extends React.Component {
                     </p> 
                 </div>
                 <div className="buttons mt">
-                    <button onClick={this.stopTimer}>
-                        <i className="fas fa-stop"></i>
-                    </button>
-                    <button onClick={this.startTimer}>
-                        <i className="fas fa-play"></i>
-                    </button>
-                    <button onClick={this.resetTimer}>
-                        <i className="fa fa-refresh"></i>
-                    </button>
+                    <Buttons 
+                        caller = {this.stopTimer}
+                        iconName = "fas fa-stop"
+                    />
+                    <Buttons 
+                        caller = {this.startTimer}
+                        iconName = "fas fa-play"
+                    />
+                    <Buttons 
+                        caller = {this.resetTimer}
+                        iconName = "fa fa-refresh"
+                    />
                 </div>
             </div>
         )
