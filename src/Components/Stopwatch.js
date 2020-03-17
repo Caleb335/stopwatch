@@ -16,7 +16,7 @@ export default class Stopwatch extends React.Component {
     }
 
     startTimer() {
-        console.log("Are you working?")
+        if (this.state.hasTimerStarted) return;
         this.setState({
             hasTimerStarted: true,
             currentTime: this.state.currentTime,
@@ -40,7 +40,9 @@ export default class Stopwatch extends React.Component {
 
     // function to  reset the timer
     resetTimer() {
+        clearInterval(this.timer);
         this.setState({
+            hasTimerStarted: false,
             timerStart: 0,
             currentTime: 0
         })
@@ -68,16 +70,18 @@ export default class Stopwatch extends React.Component {
                 </div>
                 <div className="buttons mt">
                     <Buttons 
+                        isActive={!this.state.hasTimerStarted ? "red" : ""}
                         caller = {this.stopTimer}
-                        iconName = "fas fa-stop"
+                        iconClassName = "fas fa-stop"
                     />
                     <Buttons 
+                        isActive={this.state.hasTimerStarted ? "green" : ""}
                         caller = {this.startTimer}
-                        iconName = "fas fa-play"
+                        iconClassName = "fas fa-play"
                     />
                     <Buttons 
                         caller = {this.resetTimer}
-                        iconName = "fa fa-refresh"
+                        iconClassName = "fa fa-refresh"
                     />
                 </div>
             </div>
