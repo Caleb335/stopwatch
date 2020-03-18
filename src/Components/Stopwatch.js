@@ -1,5 +1,5 @@
 import React from 'react'
-// import Buttons from './Buttons'
+import Buttons from './Buttons';
 
 export default class Stopwatch extends React.Component {
     //setting the state of stopwatch component
@@ -14,8 +14,9 @@ export default class Stopwatch extends React.Component {
         this.stopTimer = this.stopTimer.bind(this)
         this.resetTimer = this.resetTimer.bind(this)
     }
+
     startTimer() {
-        console.log("Are you working?")
+        if (this.state.hasTimerStarted) return;
         this.setState({
             hasTimerStarted: true,
             currentTime: this.state.currentTime,
@@ -27,6 +28,8 @@ export default class Stopwatch extends React.Component {
             }),
         1000)
     }
+
+    // function to stop the timer
     stopTimer() {
         console.log("Yeah you have to stop now")
         this.setState({
@@ -34,8 +37,12 @@ export default class Stopwatch extends React.Component {
         })
         clearInterval(this.timer);
     }
+
+    // function to  reset the timer
     resetTimer() {
+        clearInterval(this.timer);
         this.setState({
+            hasTimerStarted: false,
             timerStart: 0,
             currentTime: 0
         })
@@ -62,15 +69,20 @@ export default class Stopwatch extends React.Component {
                     </p> 
                 </div>
                 <div className="buttons mt">
-                    <button onClick={this.stopTimer}>
-                        <i className="fas fa-stop"></i>
-                    </button>
-                    <button onClick={this.startTimer}>
-                        <i className="fas fa-play"></i>
-                    </button>
-                    <button onClick={this.resetTimer}>
-                        <i className="fa fa-refresh"></i>
-                    </button>
+                    <Buttons 
+                        isActive={!this.state.hasTimerStarted ? "red" : ""}
+                        caller = {this.stopTimer}
+                        iconClassName = "fas fa-stop"
+                    />
+                    <Buttons 
+                        isActive={this.state.hasTimerStarted ? "green" : ""}
+                        caller = {this.startTimer}
+                        iconClassName = "fas fa-play"
+                    />
+                    <Buttons 
+                        caller = {this.resetTimer}
+                        iconClassName = "fa fa-refresh"
+                    />
                 </div>
             </div>
         )

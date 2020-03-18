@@ -32,6 +32,31 @@
 .buttons {
     margin-left: 41%;
 }
+
+.buttons > button:hover {
+    transform: scale(1.08);
+}
+
+.buttons > button:first-child:hover {
+    color: #ff0000;
+}
+
+.buttons > button:nth-child(2):hover {
+    color: #00ff00;
+}
+
+.buttons > button:nth-child(3):hover {
+    color: #0059ff;
+}
+
+.green {
+    color: #00ff00;
+}
+
+.red{
+    color: #ff0000;
+}
+
 button {
     margin: 0 10px;
     background-color: #192a56;
@@ -43,6 +68,7 @@ button {
     font-weight: 300;
     outline: none;
     border: 2px solid aliceblue;
+    transition: all .3s ease-in-out;
 }
 footer p, a {
     color: aliceblue;
