@@ -5,8 +5,13 @@
     font-family: 'Baloo Chettan 2', cursive;
 }
 
+:root {
+    --primary-color: #192a56;
+    --white: aliceblue;
+    --red: #ff0000;
+}
 #root {
-    background: #192a56;
+    background: var(--primary-color);
 }
 
 .stopwatch {
@@ -24,8 +29,8 @@
 
 .split-time{
     font-size: 20px;
-    color: #192a56;
-    background-color: aliceblue;
+    color:var(--primary-color);
+    background-color: var(--white);
     font-weight: bold;
     padding: .5rem;
     margin: 0rem .5rem;
@@ -33,12 +38,12 @@
 
 .lg-text {
     font-size: 120px;
-    color: aliceblue;
+    color: var(--white);
     text-align: center;
 }
 .md-text {
     font-size: 50px;
-    color: aliceblue;
+    color: var(--white);
 }
 
 .buttons{
@@ -51,7 +56,7 @@
 }
 
 .buttons > button:first-child:hover {
-    color: #ff0000;
+    color: var(--red);
 }
 
 .buttons > button:nth-child(2):hover {
@@ -62,35 +67,81 @@
     color: #0059ff;
 }
 
+.buttons > button:nth-child(4):hover {
+    color: #eeff00;
+}
 .green {
     color: #00ff00;
 }
 
 .red{
-    color: #ff0000;
+    color: var(--red);
 }
 
 button {
     margin: 0 10px;
-    background-color: #192a56;
+    background-color: var(--primary-color);
     border-radius: 30px;
     height: 60px;
     width: 60px;
-    color: aliceblue;
+    color: var(--white);
     font-size: 20px;
     font-weight: 300;
     outline: none;
-    border: 2px solid aliceblue;
+    border: 2px solid var(--white);
     transition: all .3s ease-in-out;
 }
 footer p, a {
-    color: aliceblue;
+    color: var(--white);
     font-size: 22px;
 }
+
+.d{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 footer {
    text-align: center;
 }
 
+/* stying for analog clock  */
+
+
+.analog-clock {
+    width: 200px;
+    height: 200px;
+    font-size: 15px;
+}
+
+#clock_face {
+    stroke: var(--white);
+    stroke-width: 2px;
+    fill:var(--primary-color);
+}
+
+#hr_hand, #mins_hand, #secs_tail {
+    stroke: var(--white);
+    stroke-linecap: round;
+    transform-origin: 35% 35%;
+}
+
+#secs_tail {
+    stroke: var(--red) ;
+}
+
+text {
+    fill: var(--white);
+    color: var(--white);
+}
+
+.digital-clock{
+    font-size: 1.5em;
+    color: var(--white);
+    font-weight: bold;
+}
 
 /* Utilities */
 /* .mt {margin-top: 5%;}

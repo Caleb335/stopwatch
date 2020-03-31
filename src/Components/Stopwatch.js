@@ -1,6 +1,7 @@
 import React from 'react'
 import Buttons from './Buttons';
 import TimeSplit from './TimeSplit'
+import Clock from './Clock'
 
 const timeConvert = (time) => {
     let seconds = 1000
@@ -42,7 +43,6 @@ export default class Stopwatch extends React.Component {
             this.setState({
                 currentTime: Date.now() - this.state.timerStart
             }),
-            //console.log(this.state.currentTime),
         1000)
     }
 
@@ -81,6 +81,7 @@ export default class Stopwatch extends React.Component {
         
         return(
             <div className="timer">
+                <Clock/>
                 <p className="md-text intro">Beat the time</p>
                 <div className="stopwatch-block">
                     
@@ -121,10 +122,15 @@ export default class Stopwatch extends React.Component {
                     />
                     <Buttons 
                         caller = {this.splitTimer}
-                        iconClassName = "fa fa-refresh"
+                        iconClassName = "fa fa-clock-o"
                     />
                 </div>
             </div>
         )
     }
 }
+
+// --------TASK--------
+// BUILD THIS TO HAVE A CLOCK DIGITAL AND ANALOG
+//TO HAVE A COUNTDOWN TOO
+//AND THE STOP WATCH SHOULD HAVE AN ANALOG VERSION
