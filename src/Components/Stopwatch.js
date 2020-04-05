@@ -1,5 +1,20 @@
 import React from 'react'
 import Buttons from './Buttons';
+import TimeSplit from './TimeSplit'
+import Clock from './Clock'
+
+const timeConvert = (time) => {
+    let seconds = 1000
+    let minutes = seconds * 60
+    let hours = minutes * 60
+
+    seconds = ("0" + Math.floor(time % (minutes) / seconds)).slice(-2)
+    minutes = ("0" + Math.floor((time % (hours)) / (minutes))).slice(-2)
+    hours = ("0" + Math.floor(time / hours)).slice(-2)
+
+    return [hours, minutes, seconds]
+}
+
 
 export default class Stopwatch extends React.Component {
     //setting the state of stopwatch component
@@ -8,11 +23,13 @@ export default class Stopwatch extends React.Component {
         this.state = {
             hasTimerStarted: false,
             timerStart: 0,
-            currentTime: 0
+            currentTime: 0,
+            splitTime : []
         }
         this.startTimer = this.startTimer.bind(this)
         this.stopTimer = this.stopTimer.bind(this)
         this.resetTimer = this.resetTimer.bind(this)
+        this.splitTimer = this.splitTimer.bind(this)
     }
 
     startTimer() {
@@ -31,7 +48,6 @@ export default class Stopwatch extends React.Component {
 
     // function to stop the timer
     stopTimer() {
-        console.log("Yeah you have to stop now")
         this.setState({
            hasTimerStarted: false // setting the timer start to false and clearing the interval.
         })
@@ -44,30 +60,51 @@ export default class Stopwatch extends React.Component {
         this.setState({
             hasTimerStarted: false,
             timerStart: 0,
-            currentTime: 0
+            currentTime: 0,
+            splitTime: []
         })
+    }
+
+    // function to split time
+    splitTimer() {
+        if (!this.state.hasTimerStarted) return
+        let timer = [this.state.currentTime, ...this.state.splitTime];
+        this.setState({
+            splitTime: timer // as an array of timestamp
+        });
     }
 
     render() {
         // Formatting timer display.
         const {currentTime} = this.state
-
-        let seconds = 1000
-        let minutes = seconds * 60
-        let hours = minutes * 60
-
-        seconds = ("0" + Math.floor(currentTime % (minutes) / seconds)).slice(-2)
-        minutes = ("0" + Math.floor((currentTime % (hours)) / (minutes))).slice(-2)
-        hours = ("0" + Math.floor(currentTime / hours)).slice(-2)
-
+        const [hours, minutes, seconds] = timeConvert(currentTime)
+        
         return(
             <div className="timer">
+                <Clock/>
+                <p className="md-text intro">Beat the time</p>
                 <div className="stopwatch-block">
-                    <p className="md-text intro">Beat the time</p>
+                    
+                    <div>
+                        {this.state.splitTime.map((timestamp, id) => {
+                            const [hours, minutes, seconds] = timeConvert(timestamp);
+                            return (
+                                <TimeSplit 
+                                    hours = {hours}
+                                    minutes = {minutes}
+                                    seconds = {seconds}
+                                    key = {id}
+                                />
+                            )
+                                
+                        })}
+                    </div>
+
                     <p className="lg-text mt-4">
                         {hours} : {minutes} : {seconds}
                     </p> 
                 </div>
+                
                 <div className="buttons mt">
                     <Buttons 
                         isActive={!this.state.hasTimerStarted ? "red" : ""}
@@ -83,8 +120,17 @@ export default class Stopwatch extends React.Component {
                         caller = {this.resetTimer}
                         iconClassName = "fa fa-refresh"
                     />
+                    <Buttons 
+                        caller = {this.splitTimer}
+                        iconClassName = "fa fa-clock-o"
+                    />
                 </div>
             </div>
         )
     }
 }
+
+// --------TASK--------
+// BUILD THIS TO HAVE A CLOCK DIGITAL AND ANALOG
+//TO HAVE A COUNTDOWN TOO
+//AND THE STOP WATCH SHOULD HAVE AN ANALOG VERSION
